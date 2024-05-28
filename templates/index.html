@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Lista zakupów</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Lista zakupów</h1>
+
+    <form action="/" method="POST">
+        <input type="text" name="name" placeholder="Wpisz produkt">
+        <input type="submit" value="Dodaj produkt">
+    </form>
+
+    <table>
+        <tr>
+            <th>Produkt</th>
+            <th>Akcja</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>
+                <a href="{{ url_for('delete_product', id=product.id) }}">Usuń</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
